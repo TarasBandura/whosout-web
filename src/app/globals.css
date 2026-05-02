@@ -914,6 +914,186 @@ a {
   background: rgba(124, 108, 249, 0.1);
 }
 
+/* ─── event landing (/event/[id]) · cinematic ─── */
+.wo-event-page {
+  width: 100%;
+  max-width: min(var(--max), 100%);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.wo-event-hero {
+  position: relative;
+  isolate: isolate;
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: min(70vh, 520px);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.45),
+    inset 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.wo-event-hero__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+}
+
+.wo-event-hero__img--placeholder {
+  background:
+    radial-gradient(circle at 30% -10%, rgba(255, 120, 70, 0.35), transparent 55%),
+    radial-gradient(circle at 90% 40%, rgba(124, 108, 249, 0.32), transparent 58%),
+    linear-gradient(165deg, #0a0d14, #040508);
+}
+
+.wo-event-hero__scrim {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(6, 7, 10, 0.12) 0%, rgba(4, 5, 8, 0.55) 36%, rgba(4, 5, 8, 0.92) 100%),
+    radial-gradient(120% 80% at 50% -20%, rgba(255, 120, 70, 0.18), transparent 70%);
+}
+
+.wo-event-hero__grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.wo-event-hero__content {
+  position: relative;
+  z-index: 3;
+  margin-top: auto;
+  padding: 28px 20px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wo-event-live-pill {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 122, 69, 0.35);
+  background: rgba(255, 90, 40, 0.12);
+  color: var(--accent-hot);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.wo-event-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffb08a 0%, #ff5a29 72%);
+  box-shadow: 0 0 12px rgba(255, 90, 41, 0.75);
+}
+
+.wo-event-title {
+  margin: 0;
+  font-size: clamp(1.85rem, 5.5vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.04em;
+  color: #fafafa;
+}
+
+.wo-event-momentum {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.46;
+  color: rgba(244, 244, 245, 0.9);
+}
+
+.wo-event-host {
+  margin: 0;
+  font-size: 0.93rem;
+  color: rgba(244, 244, 245, 0.75);
+}
+
+.wo-event-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.wo-event-tag {
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: rgba(244, 244, 245, 0.9);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 154, 112, 0.18);
+}
+
+.wo-event-tier {
+  margin-top: 22px;
+  padding: 0 2px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.wo-event-lead {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.52;
+  color: rgba(244, 244, 245, 0.86);
+}
+
+.wo-event-microcopy {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.52;
+  color: var(--muted);
+}
+
+.wo-event-link-label {
+  margin: 4px 0 0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.wo-event-link-chip {
+  display: block;
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-hot);
+  word-break: break-all;
+}
+
+.wo-event-actions .btn-stack {
+  margin-bottom: 0;
+}
+
 .wo-panel--event .wo-panel__headline {
   margin-top: 2px;
 }

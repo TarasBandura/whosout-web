@@ -2,19 +2,19 @@
 
 import { useCallback } from 'react';
 
-import {
-  SCHEME_PRIMARY,
-  SCHEME_FUTURE,
-} from '@/lib/config';
+import { SCHEME_PRIMARY, SCHEME_FUTURE } from '@/lib/config';
 
 type Props = {
   /** e.g. `invite/ABC123` or `event/uuid` */
   deepLinkPath: string;
 };
 
+const showAlternateDeepLink =
+  typeof process.env.NEXT_PUBLIC_SHOW_ALT_DEEP_LINK === 'string' &&
+  process.env.NEXT_PUBLIC_SHOW_ALT_DEEP_LINK === '1';
+
 /**
- * Tries primary custom URL scheme first (best-effort).
- * Fallback: user uses store buttons; optional alternate scheme tap.
+ * Tries the primary custom scheme (best-effort universal-link handoff from Safari).
  */
 export function OpenAppButtons({ deepLinkPath }: Props) {
   const primary = `${SCHEME_PRIMARY}://${deepLinkPath}`;
@@ -30,12 +30,14 @@ export function OpenAppButtons({ deepLinkPath }: Props) {
 
   return (
     <div className="btn-stack">
-      <button type="button" className="btn btn-primary" onClick={openPrimary}>
-        Open app
+      <button type="button" className="btn btn-primary wo-open-app-btn" onClick={openPrimary}>
+        Pull up in app
       </button>
-      <button type="button" className="btn btn-ghost" onClick={openAlternate}>
-        Try alternate link ({SCHEME_FUTURE}://)
-      </button>
+      {showAlternateDeepLink ? (
+        <button type="button" className="btn btn-ghost wo-open-app-btn--alt" onClick={openAlternate}>
+          Try alternate link ({SCHEME_FUTURE}://)
+        </button>
+      ) : null}
     </div>
   );
 }
